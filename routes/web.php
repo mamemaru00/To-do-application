@@ -23,6 +23,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/folders/{id}/tasks', 'TaskController@index')->name('tasks.index');
+
 // Route::get('/folders/{folder}/tasks', 'TaskController@index')->name('tasks.index');
-Route::get('/folders/{folder}/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks.index');
+// Route::get('/folders/{folder}/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks.index');
+
+// Route::get('/folders/{id}/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks.index');
+// Route::get('/folders/{id}/tasks', [ 'App\Http\Controllers\TaskController', 'index'] )->name('tasks.index');
+Route::get('/folders/{id}/tasks', [\App\Http\Controllers\TaskController::class, 'index'])->name('tasks.index');
 
