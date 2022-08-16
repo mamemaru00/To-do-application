@@ -11,4 +11,8 @@ class Folder extends Model
 {
     use HasFactory;
     
+    public function tasks()
+    {
+        return $this->hasMany('App\Models\Task');
+    }
 }
