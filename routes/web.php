@@ -18,8 +18,6 @@ use App\Http\Controllers\TaskController;
 //     return view('welcome');
 // });
 
-Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/folders/{id}/tasks', 'TaskController@index')->name('tasks.index');
@@ -31,3 +29,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::get('/folders/{id}/tasks', [ 'App\Http\Controllers\TaskController', 'index'] )->name('tasks.index');
 Route::get('/folders/{id}/tasks', [\App\Http\Controllers\TaskController::class, 'index'])->name('tasks.index');
 
+//Folder作成
+Route::get('/folders/create', [\App\Http\Controllers\FolderController::class, 'showCreateForm'])->name('folders.create');
+Route::post('/folders/create', [\App\Http\Controllers\FolderController::class, 'create']);
+
+Auth::routes();
