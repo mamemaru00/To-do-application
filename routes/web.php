@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\FolderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,14 +28,18 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Route::get('/folders/{id}/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks.index');
 // Route::get('/folders/{id}/tasks', [ 'App\Http\Controllers\TaskController', 'index'] )->name('tasks.index');
-Route::get('/folders/{id}/tasks', [\App\Http\Controllers\TaskController::class, 'index'])->name('tasks.index');
+Route::get('/folders/{id}/tasks', [TaskController::class, 'index'])->name('tasks.index');
 
 //Folder作成
-Route::get('/folders/create', [\App\Http\Controllers\FolderController::class, 'showCreateForm'])->name('folders.create');
-Route::post('/folders/create', [\App\Http\Controllers\FolderController::class, 'create']);
+Route::get('/folders/create', [FolderController::class, 'showCreateForm'])->name('folders.create');
+Route::post('/folders/create', [FolderController::class, 'create']);
 
 //TASK作成
-Route::get('/folders/{id}/tasks/create', [\App\Http\Controllers\TaskController::class, 'showCreateForm'])->name('tasks.create');
-Route::post('/folders/{id}/tasks/create', [\App\Http\Controllers\TaskController::class, 'create']);
+Route::get('/folders/{id}/tasks/create', [TaskController::class, 'showCreateForm'])->name('tasks.create');
+Route::post('/folders/{id}/tasks/create', [TaskController::class, 'create']);
+
+// TASK-EDIT作成
+Route::get('/folders/{id}/tasks/{task_id}/edit', [TaskController::class, 'showEditForm'])->name('tasks.edit');
+Route::post('/folders/{id}/tasks/{task_id}/edit', [TaskController::class, 'edit']);
 
 Auth::routes();
