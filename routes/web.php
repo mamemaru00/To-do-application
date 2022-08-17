@@ -19,6 +19,9 @@ use App\Http\Controllers\HomeController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::group(['middleware' => 'auth'], function() {
+
+    //HP 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -39,8 +42,10 @@ Route::post('/folders/create', [FolderController::class, 'create']);
 Route::get('/folders/{id}/tasks/create', [TaskController::class, 'showCreateForm'])->name('tasks.create');
 Route::post('/folders/{id}/tasks/create', [TaskController::class, 'create']);
 
-// TASK-EDIT作成
+// TASK編集
 Route::get('/folders/{id}/tasks/{task_id}/edit', [TaskController::class, 'showEditForm'])->name('tasks.edit');
 Route::post('/folders/{id}/tasks/{task_id}/edit', [TaskController::class, 'edit']);
+
+});
 
 Auth::routes();
