@@ -34,8 +34,9 @@ class TaskTest extends TestCase
             'due_date' => 123, // 不正なデータ（数値）
         ]);
 
+        // dd($response);
         $response->assertSessionHasErrors([
-            'due_date' => '期限日には日付を入力してください。',
+            'due_date' => '期限日 には日付を入力してください。',
         ]);
     }
 
@@ -51,7 +52,7 @@ class TaskTest extends TestCase
         ]);
 
         $response->assertSessionHasErrors([
-            'due_date' => '期限日には今日以降の日付を入力してください。',
+            'due_date' => '期限日 には今日以降の日付を入力してください。',
         ]);
     }
 }
