@@ -22,13 +22,16 @@ use Illuminate\Support\Facades\Auth;
 //     return view('welcome');
 // });
 Route::group(['middleware' => 'auth'], function() {
+    Route::get('/folders/{folder}/tasks', [TaskController::class, 'index'])->name('tasks.index');
+});
 
+Route::group(['middleware' => 'auth'], function() {
     //HP 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/folders/{folder}/tasks', [TaskController::class, 'index'])->name('tasks.index');
+
 
 //Folder作成
 Route::get('/folders/create', [FolderController::class, 'showCreateForm'])->name('folders.create');
