@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">ログイン</div>
+                <div class="card-header"></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
