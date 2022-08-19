@@ -22,6 +22,7 @@ class TaskController extends Controller
         // ユーザーのフォルダを取得する
         $folders = Auth::user()->folders()->get();
 
+
         // 選ばれたフォルダに紐づくタスクを取得する
         $tasks = $folder->tasks()->get();
 
@@ -59,7 +60,7 @@ class TaskController extends Controller
         $folder->tasks()->save($task);
 
         return redirect()->route('tasks.index', [
-            'id' => $folder->id,
+            'folder' => $folder->id,
         ]);
     }
 
@@ -72,9 +73,6 @@ class TaskController extends Controller
     public function showEditForm(Folder $folder, Task $task)
     {
         $this->checkRelation($folder, $task);
-        if ($folder->id !== $task->folder_id) {
-            abort(404);
-        }
 
         return view('tasks/edit', [
             'task' => $task,
@@ -101,7 +99,14 @@ class TaskController extends Controller
         $task->save();
 
         return redirect()->route('tasks.index', [
-            'id' => $task->folder_id,
+            'folder' => $task->folder_id,
         ]);
+    }
+
+    private function checkRelation(Folder $folder, Task $task)
+    {
+        if ($folder->id !== $task->folder_id) {
+            abort(404);
+        }
     }
 }

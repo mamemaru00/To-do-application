@@ -2,7 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Task;
+use App\Models\Task;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EditTask extends CreateTask

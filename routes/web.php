@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\FolderController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => 'can:view,folder'], function() {
+
 Route::get('/folders/{folder}/tasks', [TaskController::class, 'index'])->name('tasks.index');
 
 //Folder作成
@@ -39,7 +41,7 @@ Route::post('/folders/{folder}/tasks/create', [TaskController::class, 'create'])
 // TASK編集
 Route::get('/folders/{folder}/tasks/{task}/edit', [TaskController::class, 'showEditForm'])->name('tasks.edit');
 Route::post('/folders/{folder}/tasks/{task}/edit', [TaskController::class, 'edit']);
-});
+
 });
 
 Auth::routes();
